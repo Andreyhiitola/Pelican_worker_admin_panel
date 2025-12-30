@@ -1,0 +1,86 @@
+{
+  "zakazfoods": {
+    "spreadsheetId": "1shgGllKGDNEeZlNQYGnJ38SS8_YvFjzF7Ry8BOeJM28",
+    "sheetName": "Sheet1",
+    "priority": "daily",
+    "description": "Заказ еды"
+  },
+  "rules": {
+    "spreadsheetId": "1jfoDzG66oUUuk3y9Ghu7AEzkl0CHsIIespQbIhz4qNM",
+    "sheetName": "Sheet1",
+    "priority": "weekly",
+    "description": "Правила проживания"
+  },
+  "reviews": {
+    "spreadsheetId": "10OI4LyQlsA0R9RudvP7J6hU9EuolO8w8TiXbVLq5N2s",
+    "sheetName": "Sheet1",
+    "priority": "weekly",
+    "description": "Отзывы гостей"
+  },
+  "price": {
+    "spreadsheetId": "1oNC13qkqiDctRl_CE7cgLvICZ-fM05zmGWrfUPjw0O0",
+    "sheetName": "Sheet1",
+    "priority": "daily",
+    "description": "Цены"
+  },
+  "package": {
+    "spreadsheetId": "10ismyYMkyhSDBHkT2FAN6a2d5yZ25oMSQ03pMYDKfIw",
+    "sheetName": "Sheet1",
+    "priority": "weekly",
+    "description": "Пакеты услуг"
+  },
+  "offer": {
+    "spreadsheetId": "1PYcWx7_Yv7LGyMQuUsO3j48ZQK6uGWy0FnUXl1wxeX4",
+    "sheetName": "Sheet1",
+    "priority": "daily",
+    "description": "Специальные предложения"
+  },
+  "menu": {
+    "spreadsheetId": "1uS_f3EVNECs07l18-HigOgeSVciYMA4hXY93oNZEpMg",
+    "sheetName": "Sheet1",
+    "priority": "daily",
+    "description": "Меню ресторана"
+  },
+  "infrastructure": {
+    "spreadsheetId": "1_pp40Q7vAoZvijlMQ-fA4KAC0BAfdUEjlHfiwsQ8yeU",
+    "sheetName": "Sheet1",
+    "priority": "weekly",
+    "description": "Инфраструктура отеля"
+  },
+  "gallery": {
+    "spreadsheetId": "1HFF-KDOediKba_K9da0HV3_4RvD5bZJ-FcnL15OQ-0U",
+    "sheetName": "Sheet1",
+    "priority": "weekly",
+    "description": "Галерея фотографий"
+  },
+  "faq": {
+    "spreadsheetId": "15CYi-4YksxH9vdpOoR0Gpf1swIE9HKTo-cgg198N_j4",
+    "sheetName": "Sheet1",
+    "priority": "weekly",
+    "description": "Часто задаваемые вопросы"
+  },
+  "contacts": {
+    "spreadsheetId": "1H4BIHz1c10tPj1Pp78z11FJmHFhpYTBJiCKsbJHLR3A",
+    "sheetName": "Sheet1",
+    "priority": "weekly",
+    "description": "Контактная информация"
+  },
+  "booking": {
+    "spreadsheetId": "1a6cwJiYhAKwutS0-nozlOiwCB7tFiAZtJiluWwerlx4",
+    "sheetName": "Sheet1",
+    "priority": "daily",
+    "description": "Бронирования"
+  },
+  "activities": {
+    "spreadsheetId": "1IVOJCrs6fo3ew9p_8XdBHgY_6jjc8D8xrwmzkayfTJo",
+    "sheetName": "Sheet1",
+    "priority": "weekly",
+    "description": "Развлечения и активности"
+  },
+  "accommodation": {
+    "spreadsheetId": "1Pc-kS2gsixh7UpMVXXejtt7T2L31T10t8Dd5ja0ZgiY",
+    "sheetName": "Sheet1",
+    "priority": "weekly",
+    "description": "Номерной фонд"
+  }
+}

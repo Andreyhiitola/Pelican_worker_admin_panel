@@ -1,0 +1,7 @@
+name = "pelikan-worker"
+main = "src/index.js"
+compatibility_date = "2024-12-30"
+
+[vars]
+ADMIN_TOKEN = "admin-secret-token-2025"
+VIEWER_TOKEN = "viewer-token-2025"

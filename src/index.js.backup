@@ -1,0 +1,108 @@
+// Cloudflare Worker для защиты JSON API Пеликан Алаколь
+const GITHUB_RAW = 'https://raw.githubusercontent.com/Andreyhiitola/pelikan-alakol-site_v2/main';
+
+export default {
+  async fetch(request, env) {
+    const url = new URL(request.url);
+    
+    // CORS headers
+    const corsHeaders = {
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
+      'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+    };
+
+    // Preflight
+    if (request.method === 'OPTIONS') {
+      return new Response(null, { headers: corsHeaders });
+    }
+
+    // Проверка токена
+    const token = url.searchParams.get('token') || 
+                  request.headers.get('Authorization')?.replace('Bearer ', '');
+    
+    const ADMIN_TOKEN = env.ADMIN_TOKEN || 'admin-secret-token-2025';
+    const VIEWER_TOKEN = env.VIEWER_TOKEN || 'viewer-token-2025';
+
+    if (!token || (token !== ADMIN_TOKEN && token !== VIEWER_TOKEN)) {
+      return new Response(JSON.stringify({ 
+        error: 'Unauthorized',
+        message: 'Требуется валидный токен (admin или viewer)'
+      }), {
+        status: 401,
+        headers: { ...corsHeaders, 'Content-Type': 'application/json' }
+      });
+    }
+
+    // GET: Получение JSON файлов
+    if (request.method === 'GET') {
+      const pathname = url.pathname.replace('/api/', '');
+      const filename = pathname.endsWith('.json') ? pathname : `${pathname}.json`;
+      const githubUrl = `${GITHUB_RAW}/${filename}`;
+      
+      console.log(`Fetching: ${githubUrl}`);
+      
+      try {
+        const response = await fetch(githubUrl);
+        
+        if (!response.ok) {
+          return new Response(JSON.stringify({ 
+            error: 'File not found',
+            file: filename
+          }), {
+            status: 404,
+            headers: { ...corsHeaders, 'Content-Type': 'application/json' }
+          });
+        }
+        
+        const data = await response.text();
+        
+        return new Response(data, {
+          headers: { 
+            ...corsHeaders, 
+            'Content-Type': 'application/json',
+            'Cache-Control': 'public, max-age=300' // кеш 5 минут
+          }
+        });
+      } catch (error) {
+        return new Response(JSON.stringify({ 
+          error: 'Fetch error',
+          message: error.message
+        }), {
+          status: 500,
+          headers: { ...corsHeaders, 'Content-Type': 'application/json' }
+        });
+      }
+    }
+
+    // POST/PUT: Обновление JSON (только admin)
+    if ((request.method === 'POST' || request.method === 'PUT') && token === ADMIN_TOKEN) {
+      const body = await request.json();
+      
+      // TODO: Интеграция с GitHub API для commit/push
+      // Пока возвращаем заглушку
+      return new Response(JSON.stringify({ 
+        success: true, 
+        message: 'Update queued (GitHub API integration pending)',
+        data: body
+      }), {
+        headers: { ...corsHeaders, 'Content-Type': 'application/json' }
+      });
+    }
+
+    // DELETE: Удаление (только admin)
+    if (request.method === 'DELETE' && token === ADMIN_TOKEN) {
+      return new Response(JSON.stringify({ 
+        success: true, 
+        message: 'Delete queued (GitHub API integration pending)'
+      }), {
+        headers: { ...corsHeaders, 'Content-Type': 'application/json' }
+      });
+    }
+
+    return new Response(JSON.stringify({ error: 'Method not allowed' }), { 
+      status: 405, 
+      headers: corsHeaders 
+    });
+  }
+};

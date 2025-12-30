@@ -1,0 +1,13 @@
+{
+  "name": "pelikan-worker",
+  "version": "1.0.0",
+  "description": "Cloudflare Worker для защиты API Пеликан Алаколь",
+  "main": "src/index.js",
+  "scripts": {
+    "deploy": "wrangler deploy",
+    "dev": "wrangler dev"
+  },
+  "keywords": ["cloudflare", "worker", "api", "security"],
+  "author": "Pelikan Alakol",
+  "license": "MIT"
+}
